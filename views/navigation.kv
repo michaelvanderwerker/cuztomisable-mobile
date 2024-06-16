@@ -1,0 +1,49 @@
+<Navigation>:
+	cols: 2
+	size_hint_y: None
+	height: 60
+	padding: ["24dp", "2dp", "18dp", "0dp"]
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 0.65
+        BoxShadow:
+            pos: self.pos
+            size: self.size
+            offset: 0, 0
+            blur_radius: 10
+            spread_radius: 0, 0
+    canvas:
+        Color:
+            rgba: app.theme_cls.primary_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+	MDBoxLayout:
+		Image:
+			source: "./assets/images/logo.png"
+			size_hint_y: None
+			size_hint_x: None
+			height: 32
+			width: 32
+			pos_hint: {"center_y": 0.5}
+		MDLabel:
+			id: navigation_label
+			text: "Cuztomisable"
+			font_size: 18
+			theme_text_color: "Custom"
+			text_color: (1,1,1,1)
+			padding: ["16dp", "0dp", "0dp", "0dp"]
+			font_style: "H6"
+	MDBoxLayout:
+		cols: 1
+		size_hint_x: None
+		spacing: "8dp"
+		pos_hint: {"center_x":0.5, "y":0}
+		width: self.minimum_width
+		MDIconButton:
+			icon: "logout"
+			pos_hint: {"center_y": 0.5}
+			size_hint_x: None
+			theme_text_color: "Custom"
+			text_color: (1,1,1,1)
+			on_press: root.logout()

@@ -1,0 +1,79 @@
+<Forget>:
+	id: forget
+	name: root.name
+
+	MDGridLayout:
+		rows: 2
+		cols: 1
+		pos_hint: {"top": 1}
+		MDCard:
+			radius: [0, 0, 15, 15]
+			pos_hint: {"center_x": 0.5, "center_y": 0.5}
+			elevation: 1.25
+			padding: 25
+			height: layout.height + form_layout.height + 25
+			size_hint_y: None
+			MDGridLayout:
+				rows: 2
+				cols: 1
+				padding: 0, 0, 0, 5
+				MDGridLayout:
+					id: layout
+					rows: 3
+					cols: 1
+					adaptive_height: True
+					padding: 0, 35, 0, 35
+					MDLabel:
+						text: "Cuztomisable"
+						font_size: 40
+						halign: "center"
+						size_hint_y: None
+						height: self.texture_size[1]
+						padding: 0, 0, 0, 35
+
+					MDGridLayout:
+						id: form_layout
+						rows: 3
+						cols: 1
+						adaptive_height: True
+						MDTextField:
+							id: username
+							hint_text: "Username / Email"
+							icon_right: "account"
+							helper_text: ""
+							helper_text_mode: "on_error"
+							pos_hint: {"center_x": .5, "center_y": .5}
+							size_hint_x: 1
+							disabled: root.in_progress
+							on_text: root.clear('username')
+						MDTextButton:
+							text: "Remember Password?"
+							font_size: 12
+							underline: True
+							size_hint_y: None
+							height: self.texture_size[1]
+							valign: "top"
+							on_press: app.root.ids.main_screen_manager.current = "login"
+						
+				MDFillRoundFlatButton:
+					id: disable_me
+					text: "Send"
+					font_size: 18
+					pos_hint: {"center_x": 0.5}
+					size_hint_x: 1
+					padding: 0, 10, 0, 10
+					disabled: root.in_progress
+					on_press: root.send()
+					disabled_color: "grey"
+
+		MDGridLayout:
+			rows: 1
+			cols: 1
+			padding: 25, 35, 25, 0
+			MDRoundFlatButton:
+				text: "Create an account?"
+				font_size: 18
+				pos_hint: {"center_x": 0.5}
+				size_hint_x: 1
+				padding: 0, 10, 0, 10
+				on_press: app.root.ids.main_screen_manager.current = "register"

@@ -1,0 +1,80 @@
+<MFA>:
+	id: mfa
+	name: root.name
+
+	MDGridLayout:
+		rows: 1
+		cols: 1
+		pos_hint: {"top": 1}
+		MDCard:
+			radius: [0, 0, 15, 15]
+			pos_hint: {"center_x": 0.5, "center_y": 0.5}
+			elevation: 1.25
+			padding: 25
+			height: layout.height + 100
+			size_hint_y: None
+			MDGridLayout:
+				rows: 2
+				cols: 1
+				padding: 0, 0, 0, 5
+				MDGridLayout:
+					id: layout
+					rows: 3
+					cols: 1
+					adaptive_height: True
+					padding: 0, 35, 0, 35
+					MDLabel:
+						text: "Cuztomisable"
+						font_size: 40
+						halign: "center"
+						size_hint_y: None
+						height: self.texture_size[1]
+						padding: 0, 0, 0, 35
+					MDGridLayout:
+						id: form_layout
+						rows: 3
+						cols: 1
+						adaptive_height: True
+						MDTextField:
+							id: code
+							hint_text: "Code"
+							helper_text: ""
+							helper_text_mode: "on_error"
+							pos_hint: {"center_x": .5, "center_y": .5}
+							size_hint_x: 1
+							disabled: root.in_progress
+							on_text: root.clear('code')
+						MDTextButton:
+							text: "Resend code?"
+							font_size: 12
+							underline: True
+							size_hint_y: None
+							height: self.texture_size[1]
+							valign: "top"
+							on_press: root.resend()
+						MDBoxLayout:
+							size_hint_y: None
+							size_hint_x: None
+							height: 50
+							MDCheckbox:
+								id: remember
+								ripple_scale: 0
+								size_hint_x: None
+								size: 22, self.height
+							MDTextButton:
+								size_hint_x: None
+								pos_hint: {"center_x": 0.5, "center_y": 0.5}
+								text: "Remember?"
+								size_hint_y: None
+								height: 8
+								padding: 16, 0, 0, 0
+								on_release: root.ids.remember.active = False if root.ids.remember.active else True
+
+				MDFillRoundFlatButton:
+					text: "Continue"
+					font_size: 18
+					pos_hint: {"center_x": 0.5}
+					size_hint_x: 1
+					padding: 0, 10, 0, 10
+					disabled: root.in_progress
+					on_press: root.verify()

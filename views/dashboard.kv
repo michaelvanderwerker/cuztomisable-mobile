@@ -1,0 +1,16 @@
+#: import Navigation src.components.navigation.Navigation
+<Dashboard>:
+	id: dashboard
+	name: root.name
+
+	MDGridLayout:
+		rows: 2
+		cols: 1
+		pos_hint: {"top": 1}
+		Navigation:
+			id: navigation
+			object_root: root
+		MDLabel:
+			id: user_name
+			text: ""
+			halign: "center"

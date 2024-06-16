@@ -1,0 +1,47 @@
+<MFAVerify>:
+	id: mfa_verify
+	name: root.name
+
+	MDGridLayout:
+		rows: 1
+		cols: 1
+		pos_hint: {"top": 1}
+		MDCard:
+			radius: [0, 0, 15, 15]
+			pos_hint: {"center_x": 0.5, "center_y": 0.5}
+			elevation: 1.25
+			padding: 25
+			height: layout.height + 100
+			size_hint_y: None
+			MDGridLayout:
+				rows: 2
+				cols: 1
+				padding: 0, 0, 0, 5
+				MDGridLayout:
+					id: layout
+					rows: 2
+					cols: 1
+					adaptive_height: True
+					padding: 0, 35, 0, 35
+					MDLabel:
+						text: "Cuztomisable"
+						font_size: 40
+						halign: "center"
+						size_hint_y: None
+						height: self.texture_size[1]
+						padding: 0, 0, 0, 35
+					MDBoxLayout:
+						id: form_layout
+						adaptive_height: True
+						orientation: 'vertical'
+						size_hint_x: None
+						height: 30
+
+				MDFillRoundFlatButton:
+					text: "Send"
+					font_size: 18
+					pos_hint: {"center_x": 0.5}
+					size_hint_x: 1
+					padding: 0, 10, 0, 10
+					disabled: root.in_progress
+					on_press: root.send()
